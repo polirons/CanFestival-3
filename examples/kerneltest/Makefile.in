@@ -26,6 +26,7 @@
 TARGET = SUB_TARGET
 CAN_DRIVER = SUB_CAN_DRIVER
 TIMERS_DRIVER = SUB_TIMERS_DRIVER
+PYTHON = SUB_PYTHON
 
 EXTRA_CFLAGS := -I$(src)/../../include
 EXTRA_CFLAGS += -I$(src)/../../include/$(TARGET)
@@ -79,10 +80,10 @@ canf_ktest_console: console/console.c console/console.h
 
 TestSlave.c: TestSlave.od
 	$(MAKE) -C ../../objdictgen gnosis
-	python ../../objdictgen/objdictgen.py TestSlave.od TestSlave.c
+	$(PYTHON) ../../objdictgen/objdictgen.py TestSlave.od TestSlave.c
 
 TestMaster.c: TestMaster.od
 	$(MAKE) -C ../../objdictgen gnosis
-	python ../../objdictgen/objdictgen.py TestMaster.od TestMaster.c
+	$(PYTHON) ../../objdictgen/objdictgen.py TestMaster.od TestMaster.c
 	
 #endif

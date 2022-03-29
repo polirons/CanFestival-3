@@ -34,6 +34,7 @@ PREFIX = SUB_PREFIX
 TARGET = SUB_TARGET
 CAN_DRIVER = SUB_CAN_DRIVER
 TIMERS_DRIVER = SUB_TIMERS_DRIVER
+PYTHON = SUB_PYTHON
 
 INCLUDES = -I../../include -I../../include/$(TARGET) -I../../include/$(CAN_DRIVER) -I../../include/$(TIMERS_DRIVER)
 
@@ -53,7 +54,7 @@ DS401_Master: TestMaster.c $(OBJS)
 	
 TestMaster.c: TestMaster.od
 	$(MAKE) -C ../../objdictgen gnosis
-	python ../../objdictgen/objdictgen.py TestMaster.od TestMaster.c
+	$(PYTHON) ../../objdictgen/objdictgen.py TestMaster.od TestMaster.c
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(PROG_CFLAGS) ${PROGDEFINES} $(INCLUDES) -o $@ -c $<

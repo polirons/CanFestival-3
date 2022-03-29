@@ -35,6 +35,7 @@ TARGET = SUB_TARGET
 CAN_DRIVER = SUB_CAN_DRIVER
 TIMERS_DRIVER = SUB_TIMERS_DRIVER
 TESTMASTERSLAVELSS = "TestMasterSlaveLSS"
+PYTHON = SUB_PYTHON
 
 INCLUDES = -I../../include -I../../include/$(TARGET) -I../../include/$(CAN_DRIVER) -I../../include/$(TIMERS_DRIVER)
 
@@ -64,15 +65,15 @@ $(TESTMASTERSLAVELSS): $(OBJS)
 	
 TestSlaveA.c: TestSlaveA.od
 	$(MAKE) -C ../../objdictgen gnosis
-	python ../../objdictgen/objdictgen.py TestSlaveA.od TestSlaveA.c
+	$(PYTHON) ../../objdictgen/objdictgen.py TestSlaveA.od TestSlaveA.c
 
 TestSlaveB.c: TestSlaveB.od
 	$(MAKE) -C ../../objdictgen gnosis
-	python ../../objdictgen/objdictgen.py TestSlaveB.od TestSlaveB.c
+	$(PYTHON) ../../objdictgen/objdictgen.py TestSlaveB.od TestSlaveB.c
 	
 TestMaster.c: TestMaster.od
 	$(MAKE) -C ../../objdictgen gnosis
-	python ../../objdictgen/objdictgen.py TestMaster.od TestMaster.c
+	$(PYTHON) ../../objdictgen/objdictgen.py TestMaster.od TestMaster.c
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(PROG_CFLAGS) ${PROGDEFINES} $(INCLUDES) -o $@ -c $<

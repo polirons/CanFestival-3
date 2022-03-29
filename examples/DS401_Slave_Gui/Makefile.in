@@ -34,6 +34,7 @@ PREFIX = SUB_PREFIX
 TARGET = SUB_TARGET
 CAN_DRIVER = SUB_CAN_DRIVER
 TIMERS_DRIVER = SUB_TIMERS_DRIVER
+PYTHON = SUB_PYTHON
 
 EXEC = main
 SRCS = $(wildcard *.cpp)
@@ -59,7 +60,7 @@ DS401_Slave_Gui: ObjDict.c $(OBJS) $(CPP_OBJS)
 
 ObjDict.c: ObjDict.od
 	$(MAKE) -C ../../objdictgen gnosis
-	python ../../objdictgen/objdictgen.py ObjDict.od ObjDict.c
+	$(PYTHON) ../../objdictgen/objdictgen.py ObjDict.od ObjDict.c
 
 .cpp.o:
 	$(CXX) -c $(CFLAGS) $(PROG_CFLAGS) ${PROGDEFINES} $(INCLUDES) `wx-config --cxxflags` $< -o $@

@@ -853,6 +853,15 @@ if [ "$SUB_TARGET" = "hcs12" ]; then
 \	examples/gene_SYNC_HCS12/Makefile.in
 fi
 
+if [ "$SUB_PYTHON" = "" ]; then
+	which python2 >/dev/null 2>&1
+	if (( $? )); then
+		SUB_PYTHON=python
+	else
+		SUB_PYTHON=python2
+	fi
+fi
+
 for makefile_in in $MAKEFILES; do
 	makefile=`echo $makefile_in | sed 's:.in$::'`
 	echo "Creating $makefile"
@@ -875,6 +884,7 @@ for makefile_in in $MAKEFILES; do
 	s:SUB_ENABLE_DLL_DRIVERS:${SUB_ENABLE_DLL_DRIVERS}:
 	s:SUB_ENABLE_LSS:${SUB_ENABLE_LSS}:
 	s:SUB_WX:${SUB_WX}:
+	s:SUB_PYTHON:${SUB_PYTHON}:
 	" > $makefile
 done
 
